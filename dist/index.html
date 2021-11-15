@@ -17,7 +17,7 @@
             background-color: aliceblue;
             position: relative;
         }
-        #ngg, #pnf
+        #ngg, #pnf, #sc
         {
             display: none;
         }
@@ -28,6 +28,7 @@
         function ngg(){
             document.getElementById("ngg").style.display = "block";
             document.getElementById("pnf").style.display = "none";
+            document.getElementById("sc").style.display = "none";
             randomNumber = parseInt(Math.random()*100);
             document.getElementById("livetext").innerHTML = "Lives: " + live;
         }
@@ -63,6 +64,7 @@
         function pnf(){
             document.getElementById("ngg").style.display = "none";
             document.getElementById("pnf").style.display = "block";
+            document.getElementById("sc").style.display = "none";
         }
         function pnfSubmit(){
             var controller = 0;
@@ -82,6 +84,26 @@
             } else {
                 document.getElementById("px").innerHTML = `The number ${inputtedNumberx} you entered is a prime number.`;
             }
+        }
+        function sc(){
+            document.getElementById("ngg").style.display = "none";
+            document.getElementById("pnf").style.display = "none";
+            document.getElementById("sc").style.display = "block";
+        }
+        function scSubmit(){
+            var inputtedNumber1 = parseInt(document.getElementById("numberarea1").value);
+            var inputtedNumber2 = parseInt(document.getElementById("numberarea2").value);
+            var result;
+            if (document.getElementById("addition").checked){
+                result = inputtedNumber1 + inputtedNumber2;
+            } else if (document.getElementById("extraction").checked){
+                result = inputtedNumber1 - inputtedNumber2;
+            } else if (document.getElementById("multiplication").checked){
+                result = inputtedNumber1 * inputtedNumber2;
+            } else if (document.getElementById("division").checked){
+                result = inputtedNumber1 / inputtedNumber2;
+            }
+            document.getElementById("resulttext").innerHTML = "Result: " + result;
         }
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -112,6 +134,32 @@
                 <input type="submit" value="Gönder" onclick="pnfSubmit()">
             </p>
             <p id="px">You have not entered a number yet.</p>
+        </div>
+        <div id="sc">
+            <p>
+                <label>Please enter first number: </label>
+                <input type="text" id="numberarea1">
+                <br>
+                <label>Please enter second number: </label>
+                <input type="text" id="numberarea2">
+                <br>
+                <label>Please select the action: </label>
+                <br>
+                <label for="addition">Addition</label>
+                <input type="radio" name="action" id="addition">
+                <br>
+                <label for="subtraction">Subtraction</label>
+                <input type="radio" name="action" id="extraction">
+                <br>
+                <label for="multiplication">Multiplication</label>
+                <input type="radio" name="action" id="multiplication">
+                <br>
+                <label for="division">Division</label>
+                <input type="radio" name="action" id="division">
+                <br>
+                <input type="submit" value="Hesapla" onclick="scSubmit()">
+            </p>
+            <p id="resulttext"></p>
         </div>
     </div>
 </body>
