@@ -1,166 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MultipurposeWeb | Home Page</title>
-    <style>
-        h1, p
-        {
-            text-align: center;
-        }
-        .container
-        {
-            width: 100%;
-            height: 80vh;
-            background-color: aliceblue;
-            position: relative;
-        }
-        #ngg, #pnf, #sc
-        {
-            display: none;
-        }
-    </style>
-    <script>
-        var randomNumber;
-        var live = 7;
-        function ngg(){
-            document.getElementById("ngg").style.display = "block";
-            document.getElementById("pnf").style.display = "none";
-            document.getElementById("sc").style.display = "none";
-            randomNumber = parseInt(Math.random()*100);
-            document.getElementById("livetext").innerHTML = "Lives: " + live;
-        }
-        function nggSubmit(){
-            guessedRight = false;
-            // alert(randomNumber);
-            inputtedNumber = parseInt(document.getElementById("numberarea").value);
-            if (inputtedNumber > randomNumber){
-                document.getElementById("p").innerHTML = "Try entering a smaller number.";
-                live--;
-                document.getElementById("livetext").innerHTML = "Lives: " + live;
-            }
-            else if (inputtedNumber < randomNumber){
-                document.getElementById("p").innerHTML = "Try entering a bigger number.";
-                live--;
-                document.getElementById("livetext").innerHTML = "Lives: " + live;
-            } else {
-                document.getElementById("p").innerHTML = "You guessed right, excellent!";
-                guessedRight = true;
-                nggPlayAgain();
-            }
-
-            if (live == 0){
-                alert("sorry, you didn't guess correctly. The number you had to guess was: " + randomNumber);
-                nggPlayAgain();
-            }
-        }
-        function nggPlayAgain(){
-            live = 7;
-            randomNumber = parseInt(Math.random()*100);
-            document.getElementById("livetext").innerHTML = "Lives: " + live;
-        }
-        function pnf(){
-            document.getElementById("ngg").style.display = "none";
-            document.getElementById("pnf").style.display = "block";
-            document.getElementById("sc").style.display = "none";
-        }
-        function pnfSubmit(){
-            var controller = 0;
-            inputtedNumberx = parseInt(document.getElementById("numberareax").value);
-
-            for (var i = 2; i < inputtedNumberx; i++){
-                if (inputtedNumberx % i == 0){
-                    controller++;
-                    break;
-                }
-            }
-            
-            if (inputtedNumberx <= 0){
-                document.getElementById("px").innerHTML = "The number you enter must be a positive integer. Please enter an integer greater than zero.";
-            } else if (controller != 0 || inputtedNumberx == 1){
-                document.getElementById("px").innerHTML = `The number ${inputtedNumberx} you entered is not a prime number.`;
-            } else {
-                document.getElementById("px").innerHTML = `The number ${inputtedNumberx} you entered is a prime number.`;
-            }
-        }
-        function sc(){
-            document.getElementById("ngg").style.display = "none";
-            document.getElementById("pnf").style.display = "none";
-            document.getElementById("sc").style.display = "block";
-        }
-        function scSubmit(){
-            var inputtedNumber1 = parseInt(document.getElementById("numberarea1").value);
-            var inputtedNumber2 = parseInt(document.getElementById("numberarea2").value);
-            var result;
-            if (document.getElementById("addition").checked){
-                result = inputtedNumber1 + inputtedNumber2;
-            } else if (document.getElementById("extraction").checked){
-                result = inputtedNumber1 - inputtedNumber2;
-            } else if (document.getElementById("multiplication").checked){
-                result = inputtedNumber1 * inputtedNumber2;
-            } else if (document.getElementById("division").checked){
-                result = inputtedNumber1 / inputtedNumber2;
-            }
-            document.getElementById("resulttext").innerHTML = "Result: " + result;
-        }
-    </script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1>This site will soon become a multi-purpose website.</h1>
-    <p>
-        <button class="btn btn-success" onclick="ngg()">Number Guessing Game</button>
-        <button class="btn btn-danger" onclick="pnf()">Prime Number Finder</button>
-        <button class="btn btn-primary" onclick="sc()">Simple Calculator</button>
-    </p>
-    <div class="container">
-        <div id="ngg">
-            <p>
-                <label>Please enter a number: </label>
-                <input type="text" id="numberarea">
-                <input type="submit" value="Gönder" onclick="nggSubmit()">
-            </p>
-            <p id="p">You have not entered a number yet.</p>
-            <p id="livetext"></p>
-            <p><button class="btn btn-info" onclick="nggPlayAgain()">Play Again</button></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MultipurposeWeb</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MultipurposeWeb</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
         </div>
-        <div id="pnf">
-            <p>
-                <label>Please enter a number: </label>
-                <input type="text" id="numberareax">
-                <input type="submit" value="Gönder" onclick="pnfSubmit()">
-            </p>
-            <p id="px">You have not entered a number yet.</p>
+      </div>
+    </nav>
+    <div class="accordion m-3" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            Welcome
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            This site doesn't have many features yet, but it will be a
+            multi-purpose website in the future. <br />
+            <strong>To get started, </strong> try one of the options in the
+            accordion list.
+          </div>
         </div>
-        <div id="sc">
-            <p>
-                <label>Please enter first number: </label>
-                <input type="text" id="numberarea1">
-                <br>
-                <label>Please enter second number: </label>
-                <input type="text" id="numberarea2">
-                <br>
-                <label>Please select the action: </label>
-                <br>
-                <label for="addition">Addition</label>
-                <input type="radio" name="action" id="addition">
-                <br>
-                <label for="subtraction">Subtraction</label>
-                <input type="radio" name="action" id="extraction">
-                <br>
-                <label for="multiplication">Multiplication</label>
-                <input type="radio" name="action" id="multiplication">
-                <br>
-                <label for="division">Division</label>
-                <input type="radio" name="action" id="division">
-                <br>
-                <input type="submit" value="Hesapla" onclick="scSubmit()">
-            </p>
-            <p id="resulttext"></p>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            Number Guessing Game
+          </button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >#</span
+              >
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Please enter any number to guess the hidden number"
+              />
+              <button
+                class="btn btn-secondary btn-success"
+                type="button"
+                id="button-addon2"
+              >
+                Send
+              </button>
+            </div>
+            <p id="lives"></p>
+            <p class="p"></p>
+            <button class="btn btn-primary" type="button" id="resetGame">
+              Reset Game
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            Prime Number Finder
+          </button>
+        </h2>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >#</span
+              >
+              <input
+                type="number"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Please enter the number you want to know if it is prime and click the 'Send' button."
+              />
+              <button
+                class="btn btn-secondary btn-success"
+                type="button"
+                id="button-addon2"
+              >
+                Send
+              </button>
+            </div>
+            <p>Result: You have not entered a number yet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFour"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            Simple Calculator
+          </button>
+        </h2>
+        <div
+          id="collapseFour"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingFour"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text">#</span>
+              <input
+                type="number"
+                id="first-number"
+                aria-label="First number"
+                class="form-control"
+                placeholder="Please enter the first number"
+                value="6"
+              />
+              <input
+                type="number"
+                id="second-number"
+                aria-label="Second number"
+                class="form-control"
+                placeholder="Please enter the second number"
+              />
+              <button
+                class="btn btn-secondary btn-success"
+                type="button"
+                id="calculate"
+              >
+                Send
+              </button>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-danger dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                id="calc-action"
+              >
+                Please select the action
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Addition</a></li>
+                <li><a class="dropdown-item" href="#">Subtraction</a></li>
+                <li><a class="dropdown-item" href="#">Multiplication</a></li>
+                <li><a class="dropdown-item" href="#">Division</a></li>
+              </ul>
+            </div>
+            <p class="mt-3">Result:</p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      "use-strict";
+
+      // NUMBER GUESSING GAME
+      const btnSendGuessedNumber = document.querySelector(
+        "#collapseTwo .input-group button"
+      );
+      const btnResetGuessingGame = document.querySelector("#resetGame");
+
+      guessAgain();
+      btnSendGuessedNumber.addEventListener("click", function () {
+        console.log(randomNumber);
+        let getGuessedNumber =
+          document.querySelector("#collapseTwo input").value;
+        if (getGuessedNumber != randomNumber) {
+          let i;
+          getGuessedNumber < randomNumber ? (i = "bigger") : (i = "smaller");
+          document.querySelector(
+            "#collapseTwo .p"
+          ).textContent = `Try entering a ${i} number.`;
+          lives--;
+          document.querySelector("#lives").textContent = "Lives: " + lives;
+        } else {
+          document.querySelector("#collapseTwo .p").textContent =
+            "You guessed right, excellent! If you want to play again, try entering a new number.";
+        }
+
+        if (lives === 0) {
+          alert(
+            "sorry, you didn't guess correctly. The number you had to guess was: " +
+              randomNumber
+          );
+          guessAgain();
+        }
+      });
+
+      btnResetGuessingGame.addEventListener("click", guessAgain);
+
+      function guessAgain() {
+        lives = 7;
+        randomNumber = Math.trunc(Math.random() * 100);
+        document.querySelector("#lives").textContent = "Lives: " + lives;
+      }
+
+      // PRIME NUMBER FINDER
+      const btnSendPrimeNumber = document.querySelector(
+        "#collapseThree button"
+      );
+      btnSendPrimeNumber.addEventListener("click", function () {
+        let getPrimeNumber = document.querySelector(
+          "#collapseThree input"
+        ).value;
+        let controller = 0;
+
+        for (let i = 2; i < getPrimeNumber; i++) {
+          if (getPrimeNumber % i == 0) {
+            controller++;
+            break;
+          }
+        }
+
+        if (getPrimeNumber <= 0) {
+          document.querySelector("#collapseThree p").textContent =
+            "The number you enter must be a positive integer. Please enter an integer greater than zero.";
+        } else if (controller != 0 || getPrimeNumber == 1) {
+          document.querySelector(
+            "#collapseThree p"
+          ).textContent = `The number ${getPrimeNumber} you entered is not a prime number.`;
+        } else {
+          document.querySelector(
+            "#collapseThree p"
+          ).textContent = `The number ${getPrimeNumber} you entered is a prime number.`;
+        }
+      });
+
+      // SIMPLE CALCULATOR
+      const btnCalculate = document.querySelector("#calculate");
+
+      const btnAddition = document.querySelector(
+        "#collapseFour ul li:nth-child(1) .dropdown-item"
+      );
+      const btnSubtraction = document.querySelector(
+        "#collapseFour ul li:nth-child(2) .dropdown-item"
+      );
+      const btnMultiplication = document.querySelector(
+        "#collapseFour ul li:nth-child(3) .dropdown-item"
+      );
+      const btnDivision = document.querySelector(
+        "#collapseFour ul li:nth-child(4) .dropdown-item"
+      );
+
+      btnAddition.addEventListener("click", function () {
+        document.querySelector("#calc-action").textContent =
+          btnAddition.textContent;
+      });
+      btnSubtraction.addEventListener("click", function () {
+        document.querySelector("#calc-action").textContent =
+          btnSubtraction.textContent;
+      });
+      btnMultiplication.addEventListener("click", function () {
+        document.querySelector("#calc-action").textContent =
+          btnMultiplication.textContent;
+      });
+      btnDivision.addEventListener("click", function () {
+        document.querySelector("#calc-action").textContent =
+          btnDivision.textContent;
+      });
+
+      btnCalculate.addEventListener("click", function () {
+        let inputtedNumber1 = Number(
+          document.querySelector("#first-number").value
+        );
+        let inputtedNumber2 = Number(
+          document.querySelector("#second-number").value
+        );
+        let result;
+
+        switch (document.querySelector("#calc-action").textContent) {
+          case "Addition":
+            result = inputtedNumber1 + inputtedNumber2;
+            break;
+          case "Subtraction":
+            result = inputtedNumber1 - inputtedNumber2;
+            break;
+          case "Multiplication":
+            result = inputtedNumber1 * inputtedNumber2;
+            break;
+          case "Division":
+            result = inputtedNumber1 / inputtedNumber2;
+            break;
+        }
+
+        document.querySelector("#collapseFour p").textContent = result;
+      });
+    </script>
+  </body>
 </html>
