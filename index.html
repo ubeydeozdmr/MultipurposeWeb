@@ -178,7 +178,6 @@
                 aria-label="First number"
                 class="form-control"
                 placeholder="Please enter the first number"
-                value="6"
               />
               <input
                 type="number"
@@ -206,13 +205,13 @@
                 Please select the action
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Addition</a></li>
-                <li><a class="dropdown-item" href="#">Subtraction</a></li>
-                <li><a class="dropdown-item" href="#">Multiplication</a></li>
-                <li><a class="dropdown-item" href="#">Division</a></li>
+                <li><a class="dropdown-item">Addition</a></li>
+                <li><a class="dropdown-item">Subtraction</a></li>
+                <li><a class="dropdown-item">Multiplication</a></li>
+                <li><a class="dropdown-item">Division</a></li>
               </ul>
             </div>
-            <p class="mt-3">Result:</p>
+            <p class="mt-3">Result: Please enter both numbers.</p>
           </div>
         </div>
       </div>
@@ -267,17 +266,31 @@
                 Send
               </button>
             </div>
+            <div class="form-check mt-3" id="checkSpc">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckSpace"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Add spaces
+              </label>
+            </div>
             <div class="form-check mt-3">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckDefault"
+                id="flexCheckLine"
               />
-              <label class="form-check-label" for="flexCheckDefault">
-                Print text side by side
+              <label class="form-check-label" for="flexCheckLine">
+                Add lines
               </label>
             </div>
+            <button class="btn btn-primary mt-3" type="button" id="copy">
+              Copy
+            </button>
             <button class="btn btn-danger mt-3" type="button" id="clear">
               Clear
             </button>
@@ -391,6 +404,12 @@
         "#collapseFour ul li:nth-child(4) .dropdown-item"
       );
 
+      for (let i = 0; i < 4; i++) {
+        document.querySelectorAll("#collapseFour .dropdown-item")[
+          i
+        ].style.cursor = "pointer";
+      }
+
       btnAddition.addEventListener("click", function () {
         document.querySelector("#calc-action").textContent =
           btnAddition.textContent;
@@ -432,7 +451,8 @@
             break;
         }
 
-        document.querySelector("#collapseFour p").textContent = result;
+        document.querySelector("#collapseFour p").textContent =
+          "Result: " + result;
       });
 
       // TEXT REPEATER
@@ -444,24 +464,39 @@
       );
       const btnRepeat = document.querySelector("#collapseFive button");
       btnRepeat.addEventListener("click", function () {
-        if (document.querySelector("#collapseFive #flexCheckDefault").checked) {
-          for (let i = 0; i < inputRepeatNum.value; i++) {
-            document.querySelector("#collapseFive textarea").innerHTML +=
-              inputRepeatText.value;
-          }
+        if (!document.querySelector("#collapseFive #flexCheckLine").checked) {
+          document.querySelector("#collapseFive #flexCheckSpace").checked
+            ? RepeaterFunction(" ", "")
+            : RepeaterFunction("", "");
         } else {
-          for (let i = 0; i < inputRepeatNum.value; i++) {
-            document.querySelector("#collapseFive textarea").innerHTML +=
-              inputRepeatText.value +
-              `
-`;
-          }
+          document.querySelector("#collapseFive #flexCheckSpace").checked
+            ? RepeaterFunction(
+                " ",
+                `
+`
+              )
+            : RepeaterFunction(
+                "",
+                `
+`
+              );
         }
       });
       const btnClear = document.querySelector("#clear");
       btnClear.addEventListener("click", function () {
         document.querySelector("#collapseFive textarea").innerHTML = null;
       });
+      const btnCopy = document.querySelector("#copy");
+      btnCopy.addEventListener("click", function () {
+        let copyText = document.querySelector("#collapseFive textarea");
+        navigator.clipboard.writeText(copyText.value);
+      });
+      const RepeaterFunction = function (space, enter) {
+        for (let i = 0; i < inputRepeatNum.value; i++) {
+          document.querySelector("#collapseFive textarea").innerHTML +=
+            inputRepeatText.value + space + enter;
+        }
+      };
     </script>
   </body>
 </html>
