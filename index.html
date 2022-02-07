@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body onload="guessAgain()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">MultipurposeWeb</a>
@@ -305,6 +305,106 @@
                 disabled
               ></textarea>
               <label for="floatingTextarea2">Results will appear here</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSix"
+            aria-expanded="false"
+            aria-controls="collapseSix"
+          >
+            Converter
+          </button>
+        </h2>
+        <div
+          id="collapseSix"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingSix"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <h3 class="mb-3">Temperature</h3>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >#</span
+              >
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Please enter the temperature in celcius"
+                id="tempinput"
+              />
+              <button
+                class="btn btn-secondary btn-success"
+                type="button"
+                id="button-send-temp"
+              >
+                Send
+              </button>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioTemp"
+                id="flexRadioCtoF"
+                checked
+              />
+              <label class="form-check-label" for="flexRadioCtoF">
+                Celsius to Fahrenheit
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioTemp"
+                id="flexRadioFtoC"
+              />
+              <label class="form-check-label" for="flexRadioFtoC">
+                Fahrenheit to Celcius
+              </label>
+            </div>
+            <p class="mt-3">Result: No result</p>
+            <!-- <h3>Length</h3> -->
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeven">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSeven"
+            aria-expanded="false"
+            aria-controls="collapseSeven"
+          >
+            Nostalgic Nickname Generator
+          </button>
+        </h2>
+        <div
+          id="collapseSeven"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingSeven"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="input-group mb-3">
+              <a
+                class="btn btn-primary"
+                href="https://ubeydeozdmr.github.io/NostalgicNicknameGenerator"
+                target="_blank"
+                >Go to Website</a
+              >
             </div>
           </div>
         </div>
