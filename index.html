@@ -32,7 +32,7 @@
         </div>
       </div>
     </nav>
-    <div class="accordion m-3" id="accordionExample">
+    <div class="accordion m-3" id="accordion">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button
@@ -50,7 +50,7 @@
           id="collapseOne"
           class="accordion-collapse collapse show"
           aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             This site doesn't have many features yet, but it will be a
@@ -77,7 +77,7 @@
           id="collapseTwo"
           class="accordion-collapse collapse"
           aria-labelledby="headingTwo"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             <div class="input-group mb-3">
@@ -87,6 +87,7 @@
               <input
                 type="number"
                 class="form-control"
+                id="input-num-ngg"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Please enter any number to guess the hidden number"
@@ -94,14 +95,14 @@
               <button
                 class="btn btn-secondary btn-success"
                 type="button"
-                id="button-addon2"
+                id="btn-send-ngg"
               >
                 Send
               </button>
             </div>
-            <p id="lives"></p>
-            <p class="p"></p>
-            <button class="btn btn-primary" type="button" id="resetGame">
+            <p id="p-lives-ngg"></p>
+            <p id="result-ngg"></p>
+            <button class="btn btn-primary" type="button" id="btn-reset-ngg">
               Reset Game
             </button>
           </div>
@@ -124,7 +125,7 @@
           id="collapseThree"
           class="accordion-collapse collapse"
           aria-labelledby="headingThree"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             <div class="input-group mb-3">
@@ -134,6 +135,7 @@
               <input
                 type="number"
                 class="form-control"
+                id="input-num-pnf"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Please enter the number you want to know if it is prime and click the 'Send' button."
@@ -141,12 +143,12 @@
               <button
                 class="btn btn-secondary btn-success"
                 type="button"
-                id="button-addon2"
+                id="btn-send-pnf"
               >
                 Send
               </button>
             </div>
-            <p>Result: You have not entered a number yet.</p>
+            <p id="result-pnf">Result: You have not entered a number yet.</p>
           </div>
         </div>
       </div>
@@ -167,21 +169,38 @@
           id="collapseFour"
           class="accordion-collapse collapse"
           aria-labelledby="headingFour"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             <div class="input-group mb-3">
               <span class="input-group-text">#</span>
               <input
                 type="number"
-                id="first-number"
+                id="first-number-sc"
                 aria-label="First number"
                 class="form-control"
                 placeholder="Please enter the first number"
-              />
+              /><!-- Example single danger button -->
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  id="calc-action-sc"
+                >
+                  Select action
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" id="btn-a-sc">+</a></li>
+                  <li><a class="dropdown-item" id="btn-s-sc">-</a></li>
+                  <li><a class="dropdown-item" id="btn-m-sc">*</a></li>
+                  <li><a class="dropdown-item" id="btn-d-sc">/</a></li>
+                </ul>
+              </div>
               <input
                 type="number"
-                id="second-number"
+                id="second-number-sc"
                 aria-label="Second number"
                 class="form-control"
                 placeholder="Please enter the second number"
@@ -189,30 +208,15 @@
               <button
                 class="btn btn-secondary btn-success"
                 type="button"
-                id="calculate"
+                id="btn-send-sc"
               >
                 Send
               </button>
             </div>
-            <!-- Example single danger button -->
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-danger dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                id="calc-action"
-              >
-                Please select the action
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item">Addition</a></li>
-                <li><a class="dropdown-item">Subtraction</a></li>
-                <li><a class="dropdown-item">Multiplication</a></li>
-                <li><a class="dropdown-item">Division</a></li>
-              </ul>
-            </div>
-            <p class="mt-3">Result: Please enter both numbers.</p>
+
+            <p class="mt-3" id="result-sc">
+              Result: Please enter both numbers.
+            </p>
           </div>
         </div>
       </div>
@@ -233,28 +237,30 @@
           id="collapseFive"
           class="accordion-collapse collapse"
           aria-labelledby="headingFive"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
-            <div class="input-group">
+            <div class="input-group" id="input-group-num-tr">
               <span class="input-group-text" id="inputGroup-sizing-default"
                 >#</span
               >
               <input
                 type="number"
                 class="form-control"
+                id="input-num-tr"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Please enter the number of times the text you want to repeat will be repeated."
               />
             </div>
-            <div class="input-group mt-3">
+            <div class="input-group mt-3" id="input-group-text-tr">
               <span class="input-group-text" id="inputGroup-sizing-default"
                 >A</span
               >
               <input
                 type="text"
                 class="form-control"
+                id="input-text-tr"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Please enter the text you want to repeat."
@@ -262,17 +268,17 @@
               <button
                 class="btn btn-secondary btn-success"
                 type="button"
-                id="calculate"
+                id="btn-send-tr"
               >
                 Send
               </button>
             </div>
-            <div class="form-check mt-3" id="checkSpc">
+            <div class="form-check mt-3" id="form-check-space">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckSpace"
+                id="flex-check-space-tr"
               />
               <label class="form-check-label" for="flexCheckSpace">
                 Add spaces
@@ -283,28 +289,28 @@
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckLine"
+                id="flex-check-line-tr"
               />
               <label class="form-check-label" for="flexCheckLine">
                 Add lines
               </label>
             </div>
 
-            <button class="btn btn-primary mt-3" type="button" id="copy">
+            <button class="btn btn-primary mt-3" type="button" id="btn-copy-tr">
               Copy
             </button>
-            <button class="btn btn-danger mt-3" type="button" id="clear">
+            <button class="btn btn-danger mt-3" type="button" id="btn-clear-tr">
               Clear
             </button>
             <div class="form-floating">
               <textarea
                 class="form-control mt-3"
-                placeholder="Leave a comment here"
-                id="floatingTextarea2"
+                placeholder="Duplicated text will be shown here"
+                id="textarea-tr"
                 style="height: 300px"
                 disabled
               ></textarea>
-              <label for="floatingTextarea2">Results will appear here</label>
+              <label for="textarea">Results will appear here</label>
             </div>
           </div>
         </div>
@@ -326,7 +332,7 @@
           id="collapseSix"
           class="accordion-collapse collapse"
           aria-labelledby="headingSix"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             <h3 class="mb-3">Temperature</h3>
@@ -340,41 +346,36 @@
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Please enter the temperature in celcius"
-                id="tempinput"
+                id="input-temperature-c"
               />
-              <button
-                class="btn btn-secondary btn-success"
-                type="button"
-                id="button-send-temp"
-              >
+              <button class="btn btn-danger" id="btn-temp-reverse-c">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-left-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+              </button>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Result will be shown there"
+                id="input-temperature-disabled-c"
+                disabled
+              />
+              <button class="btn btn-success" type="button" id="btn-send-c">
                 Send
               </button>
             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioTemp"
-                id="flexRadioCtoF"
-                checked
-              />
-              <label class="form-check-label" for="flexRadioCtoF">
-                Celsius to Fahrenheit
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioTemp"
-                id="flexRadioFtoC"
-              />
-              <label class="form-check-label" for="flexRadioFtoC">
-                Fahrenheit to Celcius
-              </label>
-            </div>
-            <p class="mt-3">Result: No result</p>
-            <!-- <h3>Length</h3> -->
           </div>
         </div>
       </div>
@@ -395,7 +396,7 @@
           id="collapseSeven"
           class="accordion-collapse collapse"
           aria-labelledby="headingSeven"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordion"
         >
           <div class="accordion-body">
             <div class="input-group mb-3">
